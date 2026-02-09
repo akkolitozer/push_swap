@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 15:26:05 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/01 16:41:28 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/09 16:07:49 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,24 @@ int	valid_nb(const char *str)
 	return (1);
 }
 
-int parse_single_string(char *str)
+int	parse_args(t_stack **a, int ac, char **av)
+{
+	int	i;
+
+	i = -1;
+	while (++i < ac)
+	{
+		if (!valid_nb(av[i]))
+			return(ft_printf("Error\n Invalid number: %s\n", av[i]));
+		append_stack(a, new_node(ft_atoi(av[i])));
+	}
+	return (0);
+}
+
+int parse_single_string(t_stack **a, char *str)
 {
 	char **numbers;
 	int i;
-	// int nb;
 
 	numbers = ft_split(str, ' ');
 	if (!numbers)
@@ -40,10 +53,11 @@ int parse_single_string(char *str)
 	{
 		if (!valid_nb(numbers[i]))
 		{
-			ft_printf("Error\n Invalid number: %s\n", numbers[i]);
 			free_tab(numbers);
-			return (1);
+			return(ft_printf("Error\n Invalid number\n"));
 		}
+		append_stack(a, new_node(ft_atoi(numbers[i])));
 	}
+	free_tab(numbers);
 	return (0);
 }
