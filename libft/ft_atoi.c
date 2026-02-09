@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 11:41:17 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/01 16:29:33 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:53:17 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	signe;
-	int	result;
+	int		i;
+	int		signe;
+	long	result;
 
 	i = 0;
 	signe = 1;

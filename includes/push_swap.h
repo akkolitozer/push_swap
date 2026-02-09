@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 15:26:35 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/09 16:06:36 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:51:12 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,10 @@
 typedef struct s_stack
 {
 	int				value;
+	int 			index;
+	int				position;
 	struct s_stack	*next;
 }					t_stack;
-
-typedef struct s_tab
-{
-	int	index;
-	int	value;
-}					t_tab;
 
 int		parse_single_string(t_stack **a, char *str);
 int		parse_args(t_stack **a, int ac, char **av);
