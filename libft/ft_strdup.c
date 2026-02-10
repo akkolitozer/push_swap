@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/08 11:50:07 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/10 17:32:15 by hulescur         ###   ########.fr       */
+/*   Created: 2025/12/08 11:42:01 by hulescur          #+#    #+#             */
+/*   Updated: 2026/02/10 17:30:43 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "../includes/libft.h"
 
-# include "libft.h"
-# include "push_swap.h"
-# include <stddef.h>
-# include <stdlib.h>
-# include <unistd.h>
+char	*ft_strdup(const char *s1)
+{
+	char	*dup;
+	int		i;
 
-int		ft_atoi(const char *str);
-int		ft_putchar(char c);
-int		ft_putstr(char *s);
-char	**ft_split(char const *s, char c);
-char 	*ft_strdup(const char *s1);
-size_t	ft_strlen(const char *str);
-
-#endif
+	dup = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!dup)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		dup[i] = s1[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}

@@ -1,43 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   ops2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/01 18:09:42 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/10 18:26:15 by hulescur         ###   ########.fr       */
+/*   Created: 2026/02/10 19:38:32 by hulescur          #+#    #+#             */
+/*   Updated: 2026/02/10 19:41:27 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack	*new_node(int value, int index)
+void	ss(t_stack **a, t_stack **b)
 {
-	t_stack	*node;
-
-	node = (t_stack *)malloc(sizeof(t_stack));
-	if (!node)
-		return (NULL);
-	node->index = index;
-	node->value = value;
-	node->next = NULL;
-	return (node);
+	sab(a, 1);
+	sab(b, 0);
 }
 
-void	append_stack(t_stack **stack, t_stack *new)
+void	rr(t_stack **a, t_stack **b)
 {
-	t_stack	*temp;
-	
-	if (!stack || !new)
-		return ;
-	if (!*stack)
-	{
-		*stack = new;
-		return ;
-	}
-	temp = *stack;
-	while (temp->next)
-		temp = temp->next;
-	temp->next = new;
+	rab(a, 1);
+	rab(b, 0);
+}
+
+void	rrr(t_stack **a, t_stack **b)
+{
+	rrab(a, 1);
+	rrab(b, 0);
 }

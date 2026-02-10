@@ -1,0 +1,344 @@
+
+#include "../includes/push_swap.h"
+
+void	free_tab(char **tab)
+{
+	int	i;
+
+	if (!tab)
+		return ;
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
+void	free_stack(t_stack *stack)
+{
+	t_stack *tmp;
+	while (stack)
+	{
+		tmp = stack->next;
+		free(stack);
+		stack = tmp;
+	}
+}
+
+#include "../includes/push_swap.h"
+
+void print_stack(t_stack *a)
+{
+    while (a)
+    {
+        ft_printf("value=%d index=%d\n", a->value, a->index);
+        a = a->next;
+    }
+}
+
+
+int	main(int ac, char **av)
+{
+	t_stack	*a = NULL;
+	t_stack *b = NULL;
+	if (ac < 2)
+		return (ft_printf("Error\n Need arguments.\n"));
+	else if (ac == 2)
+		parse_single_string(&a, av[1]);
+	else
+		parse_args(&a, ac - 1, av + 1);
+	print_stack(a);
+	radix(&a, &b);
+	print_stack(a);
+	return (0);
+}
+
+#include "../includes/push_swap.h"
+
+void	ss(t_stack **a, t_stack **b)
+{
+	sab(a, 1);
+	sab(b, 0);
+}
+
+void	rr(t_stack **a, t_stack **b)
+{
+	rab(a, 1);
+	rab(b, 0);
+}
+
+void	rrr(t_stack **a, t_stack **b)
+{
+	rrab(a, 1);
+	rrab(b, 0);
+}
+
+#include "../includes/push_swap.h"
+
+void	pab(t_stack **one, t_stack **two, int is_a)
+{
+	t_stack	*temp;
+
+	if (!*one)
+		return ;
+	temp = *one;
+	*one = (*one)->next;
+	temp->next = *two;
+	*two = temp;
+	if (is_a)
+		ft_printf("pa\n");
+	else
+		ft_printf("pb\n");
+}
+
+void	sab(t_stack **stack, int is_a)
+{
+	t_stack *second;
+	t_stack *first;
+
+	if (!*stack || !(*stack)->next)
+		return ;
+	first = *stack;
+	second = (*stack)->next;
+	first->next = second->next;
+	second->next = first;
+	*stack = second;
+	if (is_a)
+		ft_printf("sa\n");
+	else
+		ft_printf("sb\n");
+}
+
+void	rab(t_stack **stack, int is_a)
+{
+	t_stack *first;
+	t_stack *last;
+	
+	if (!stack)
+		return ;
+	first = *stack;
+	last = *stack;
+	while (last->next)
+		last = last->next;
+	*stack = first->next;
+	first ->next = NULL;
+	last->next = first;
+	if (is_a)
+		ft_printf("ra\n");
+	else
+		ft_printf("rb\n");
+}
+
+void	rrab(t_stack **stack, int is_a)
+{
+	t_stack	*first;
+	t_stack *last;
+	
+	if (!stack)
+		return ;
+	last = *stack;
+	while ((last->next)->next)
+		last = last->next;
+	first = last->next;
+	last->next = NULL;
+	first->next = *stack;
+	*stack = first;
+	if (is_a)
+		ft_printf("rra\n");
+	else
+		ft_printf("rrb\n");
+}
+
+#include "../includes/push_swap.h"
+
+int	valid_nb(const char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+		i++;
+	if (str[i] != '\0')
+		return (0);
+	return (1);
+}
+
+int	parse_args(t_stack **a, int ac, char **av)
+{
+	int	i;
+	int	*indexer;
+
+	indexer = index_tab(av);
+	i = -1;
+	while (++i < ac)
+	{
+		if (!valid_nb(av[i]))
+			return(ft_printf("Error\n Invalid number: %s\n", av[i]));
+		append_stack(a, new_node(ft_atoi(av[i]), indexer[i]));
+	}
+	return (0);
+}
+
+int parse_single_string(t_stack **a, char *str)
+{
+	char	**numbers;
+	int 	i;
+	int		*indexer;
+
+	numbers = ft_split(str, ' ');
+	if (!numbers)
+		return (ft_printf("Error\n Failed to split string.\n"));
+	indexer = index_tab(numbers);
+	if (!indexer)
+		return (ft_printf("Error\n Failed to index string.\n"));
+	i = -1;
+	while (numbers[++i])
+	{
+		if (!valid_nb(numbers[i]))
+		{
+			free_tab(numbers);
+			return(ft_printf("Error\n Invalid number\n"));
+		}
+		append_stack(a, new_node(ft_atoi(numbers[i]), indexer[i]));
+	}
+	free_tab(numbers);
+	return (0);
+}
+
+#include "../includes/push_swap.h"
+
+int	stack_size(t_stack *stack)
+{
+	int	size;
+
+	size = 0;
+	while (stack)
+	{
+		size++;
+		stack = stack->next;
+	}
+	return (size);
+}
+
+int	max_bits(int n)
+{
+	int	bit;
+	
+	bit = 0;
+	while ((n - 1) >> bit)
+		bit++;
+	return (bit);
+}
+
+void	radix(t_stack **a, t_stack **b)
+{
+	int	i;
+	int	bit;
+	int size;
+	int bits;
+
+	bit = -1;
+	size = stack_size(*a);
+	bits = max_bits(size);
+	while (++bit < bits)
+	{
+		i = -1;
+		while (++i < size)
+		{
+			if ((((*a)->index) >> bit & 1) == 1)
+				rab(a, 1);
+			else
+				pab(a, b, 0);
+		}
+		while (*b)
+			pab(b, a, 1);
+	}
+}
+
+#include "../includes/push_swap.h"
+
+int	tab_size(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
+}
+
+int	*index_tab(char **tab)
+{
+	int	i;
+	int	j;
+	int	index;
+	int	*sorted;
+
+	sorted = malloc(sizeof(int) * (tab_size(tab)));
+	if (!sorted)
+		return (NULL);
+	i = -1;
+	while (tab[++i])
+	{
+		j = -1;
+		index = 1;
+		while (tab[++j])
+		{
+			if (atoi(tab[i]) > atoi(tab[j]))
+				index++;
+		}
+		sorted[i] = index; 
+	}
+	return (sorted);
+}
+
+// int main(int ac, char **av)
+// {
+// 	if (ac >= 2)
+// 	{
+// 		int i = 0;
+// 		av++;
+// 		int *tab = index_tab(av);
+// 		while (av[i])
+// 		{
+// 			ft_printf("%d // index : %d // nombre : %d\n-------\n", i + 1, tab[i], atoi(av[i]));
+// 			i++;
+// 		}
+// 	}
+// }
+
+#include "../includes/push_swap.h"
+
+t_stack	*new_node(int value, int index)
+{
+	t_stack	*node;
+
+	node = (t_stack *)malloc(sizeof(t_stack));
+	if (!node)
+		return (NULL);
+	node->index = index;
+	node->value = value;
+	node->next = NULL;
+	return (node);
+}
+
+void	append_stack(t_stack **stack, t_stack *new)
+{
+	t_stack	*temp;
+	
+	if (!stack || !new)
+		return ;
+	if (!*stack)
+	{
+		*stack = new;
+		return ;
+	}
+	temp = *stack;
+	while (temp->next)
+		temp = temp->next;
+	temp->next = new;
+}
