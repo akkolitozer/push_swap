@@ -12,6 +12,19 @@
 
 #include "../includes/push_swap.h"
 
+//int	more_p(t_stack *a, int i, int bit)
+//{
+//	while (a && a->index != i)
+//		a = a->next;
+//	while (a)
+//	{
+//		if (((a->index) >> bit & 1) == 0)
+//			return (1);
+//		a = a->next;
+//	}
+//	return (0);
+//}
+
 int	stack_size(t_stack *stack)
 {
 	int	size;
@@ -35,12 +48,13 @@ int	max_bits(int n)
 	return (bit);
 }
 
-void	radix(t_stack **a, t_stack **b)
+int	radix(t_stack **a, t_stack **b)
 {
 	int	i;
 	int	bit;
 	int size;
 	int bits;
+	int	count = 0;
 
 	bit = -1;
 	size = stack_size(*a);
@@ -54,8 +68,13 @@ void	radix(t_stack **a, t_stack **b)
 				rab(a, 1);
 			else
 				pab(a, b, 0);
+			count++;
 		}
 		while (*b)
+		{
 			pab(b, a, 1);
+			count++;
+		}
 	}
+	return (count);
 }

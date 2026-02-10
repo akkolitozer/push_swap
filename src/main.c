@@ -12,14 +12,14 @@
 
 #include "../includes/push_swap.h"
 
-void print_stack(t_stack *a)
-{
-    while (a)
-    {
-        ft_printf("value=%d index=%d\n", a->value, a->index);
-        a = a->next;
-    }
-}
+//void print_stack(t_stack *a)
+//{
+//    while (a)
+//    {
+//        ft_printf("value=%d index=%d\n", a->value, a->index);
+//        a = a->next;
+//    }
+//}
 
 
 int	main(int ac, char **av)
@@ -32,8 +32,6 @@ int	main(int ac, char **av)
 		parse_single_string(&a, av[1]);
 	else
 		parse_args(&a, ac - 1, av + 1);
-	print_stack(a);
-	radix(&a, &b);
-	print_stack(a);
+	ft_printf("Total operations: %d\n", radix(&a, &b));
 	return (0);
 }

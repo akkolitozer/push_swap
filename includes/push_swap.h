@@ -35,6 +35,6 @@ void	pab(t_stack **one, t_stack **two, int is_a);
 void	sab(t_stack **stack, int is_a);
 void	rab(t_stack **stack, int is_a);
 void	rrab(t_stack **stack, int is_a);
-void	radix(t_stack **a, t_stack **b);
+int		radix(t_stack **a, t_stack **b);
 
 #endif
