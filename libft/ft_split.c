@@ -6,13 +6,20 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 11:41:59 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/01 16:09:50 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/11 15:31:17 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-static	int	countwords(const char *str, char c)
+int	is_space(char c)
+{
+	if ((c >= 9 && c <= 13) || c == ' ')
+		return (1);
+	return (0);
+}
+
+int	countwords(const char *str)
 {
 	int	count;
 	int	i;
@@ -21,19 +28,19 @@ static	int	countwords(const char *str, char c)
 	i = 0;
 	while (str[i])
 	{
-		while (str[i] && str[i] == c)
+		while (str[i] && is_space(str[i]))
 			i++;
-		if (str[i] && str[i] != c)
+		if (str[i] && !is_space(str[i]))
 		{
 			count++;
-			while (str[i] && str[i] != c)
+			while (str[i] && !is_space(str[i]))
 				i++;
 		}
 	}
 	return (count);
 }
 
-static char	*ft_fill(const char *str, char c)
+static char	*ft_fill(const char *str)
 {
 	char		*sc;
 	int			j;
@@ -41,18 +48,18 @@ static char	*ft_fill(const char *str, char c)
 
 	j = -1;
 	count = 0;
-	while (str[count] && str[count] != c)
+	while (str[count] && !is_space(str[count]))
 		count++;
 	sc = malloc(sizeof(char) * (count + 1));
 	if (!sc)
 		return (NULL);
-	while (str[++j] && str[j] != c)
+	while (str[++j] && !is_space(str[j]))
 		sc[j] = str[j];
 	sc[j] = 0;
 	return (sc);
 }
 
-char	**ft_split(const char *str, char c)
+char	**ft_split(const char *str)
 {
 	char		**strs;
 	int			i;
@@ -62,17 +69,17 @@ char	**ft_split(const char *str, char c)
 	j = 0;
 	if (!str)
 		return (NULL);
-	strs = malloc((countwords(str, c) + 1) * sizeof(char *));
+	strs = malloc((countwords(str) + 1) * sizeof(char *));
 	if (!strs)
 		return (NULL);
 	while (str[i])
 	{
-		while (str[i] && str[i] == c)
+		while (str[i] && is_space(str[i]))
 			i++;
-		if (str[i] && str[i] != c)
+		if (str[i] && !is_space(str[i]))
 		{
-			strs[j++] = ft_fill(str + i, c);
-			while (str[i] && str[i] != c)
+			strs[j++] = ft_fill(str + i);
+			while (str[i] && !is_space(str[i]))
 				i++;
 		}
 	}

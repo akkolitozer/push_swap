@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 15:26:05 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/10 18:32:57 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/11 15:51:30 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,44 +26,49 @@ int	valid_nb(const char *str)
 	return (1);
 }
 
-int	parse_args(t_stack **a, int ac, char **av)
+int	parse_args(t_stack **a, t_stack **b, int ac, char **av)
 {
 	int	i;
+	int	ret;
 	int	*indexer;
 
+	ret = 0;
 	indexer = index_tab(av);
 	i = -1;
 	while (++i < ac)
 	{
 		if (!valid_nb(av[i]))
-			return(ft_printf("Error\n Invalid number: %s\n", av[i]));
+			return (ft_printf("Error\n Invalid numbers.\n"));
 		append_stack(a, new_node(ft_atoi(av[i]), indexer[i]));
 	}
-	return (0);
+	if (ac == 2 || ac == 5 || ac == 3)
+		ret += hardc(a, b, ac);
+	free(indexer);
+	return (ret);
 }
 
-int parse_single_string(t_stack **a, char *str)
+int	parse_single_string(t_stack **a, t_stack **b, char *str)
 {
 	char	**numbers;
-	int 	i;
+	int		i;
 	int		*indexer;
+	int		ret;
 
-	numbers = ft_split(str, ' ');
+	ret = 0;
+	numbers = ft_split(str);
 	if (!numbers)
 		return (ft_printf("Error\n Failed to split string.\n"));
 	indexer = index_tab(numbers);
-	if (!indexer)
-		return (ft_printf("Error\n Failed to index string.\n"));
 	i = -1;
 	while (numbers[++i])
 	{
 		if (!valid_nb(numbers[i]))
-		{
-			free_tab(numbers);
-			return(ft_printf("Error\n Invalid number\n"));
-		}
+			return (ft_printf("Error\n Invalid numbers.\n"));
 		append_stack(a, new_node(ft_atoi(numbers[i]), indexer[i]));
 	}
+	if (countwords(str) == 2 || countwords(str) == 3 || countwords(str) == 5)
+		ret += hardc(a, b, countwords(str));
+	free(indexer);
 	free_tab(numbers);
-	return (0);
+	return (ret);
 }

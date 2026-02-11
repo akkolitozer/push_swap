@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 18:41:09 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/10 19:13:57 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/11 15:57:23 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	pab(t_stack **one, t_stack **two, int is_a)
 
 void	sab(t_stack **stack, int is_a)
 {
-	t_stack *second;
-	t_stack *first;
+	t_stack	*second;
+	t_stack	*first;
 
 	if (!*stack || !(*stack)->next)
 		return ;
@@ -48,9 +48,9 @@ void	sab(t_stack **stack, int is_a)
 
 void	rab(t_stack **stack, int is_a)
 {
-	t_stack *first;
-	t_stack *last;
-	
+	t_stack	*first;
+	t_stack	*last;
+
 	if (!stack)
 		return ;
 	first = *stack;
@@ -69,8 +69,8 @@ void	rab(t_stack **stack, int is_a)
 void	rrab(t_stack **stack, int is_a)
 {
 	t_stack	*first;
-	t_stack *last;
-	
+	t_stack	*last;
+
 	if (!stack)
 		return ;
 	last = *stack;

@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 18:09:42 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/10 18:26:15 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/11 15:52:30 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_stack	*new_node(int value, int index)
 void	append_stack(t_stack **stack, t_stack *new)
 {
 	t_stack	*temp;
-	
+
 	if (!stack || !new)
 		return ;
 	if (!*stack)
