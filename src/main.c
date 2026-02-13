@@ -6,11 +6,22 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 15:26:14 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/11 16:21:57 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:09:21 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+// void	print_stack(t_stack *a)
+// {
+// 	if (!a)
+// 		ft_printf("stack empty\n");
+// 	while (a)
+// 	{
+// 		ft_printf("value=%d index=%d\n", a->value, a->index);
+// 		a = a->next;
+// 	}
+// }
 
 int	main2(t_stack *a, t_stack *b, int ac, char **av)
 {
@@ -37,17 +48,6 @@ int	main2(t_stack *a, t_stack *b, int ac, char **av)
 	free_stack(b);
 	return (0);
 }
-
-// void	print_stack(t_stack *a)
-// {
-// 	if (!a)
-// 		ft_printf("stack empty\n");
-// 	while (a)
-// 	{
-// 		ft_printf("value=%d index=%d\n", a->value, a->index);
-// 		a = a->next;
-// 	}
-// }
 
 int	main(int ac, char **av)
 {

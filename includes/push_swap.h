@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 15:26:35 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/11 15:35:19 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/13 14:39:31 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef struct s_stack
 {
 	int				value;
-	int 			index;
+	int				index;
 	struct s_stack	*next;
 }					t_stack;
 
