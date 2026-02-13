@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 11:41:59 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/11 15:31:17 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/13 17:05:00 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	**ft_split(const char *str)
 
 	i = 0;
 	j = 0;
-	if (!str)
+	if (!str || !str[0])
 		return (NULL);
 	strs = malloc((countwords(str) + 1) * sizeof(char *));
 	if (!strs)
