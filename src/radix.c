@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 19:24:47 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/13 14:38:54 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/17 14:38:47 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ int	max_bits(int n)
 	int	bit;
 
 	bit = 0;
+	if (n <= 0)
+	{
+		ft_printf("Error\n");
+		return (0);
+	}
 	while ((n - 1) >> bit)
 		bit++;
 	return (bit);
