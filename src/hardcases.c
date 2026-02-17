@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 13:57:03 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/11 15:52:55 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/17 15:02:43 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	get_pos_lower(t_stack **stack)
 	int		pos;
 	int		lower;
 
+	pos = 0;
 	temp = *stack;
 	i = 0;
 	lower = temp->index;
