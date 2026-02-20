@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 15:26:35 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/13 17:23:35 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/20 17:14:42 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	rab(t_stack **stack, int is_a);
 void	rrab(t_stack **stack, int is_a);
 void	radix(t_stack **a, t_stack **b);
 int		hardc(t_stack **a, t_stack **b, int i);
-void	error_exit(t_stack *stack, char **tab);
+int		error_exit(t_stack *a, t_stack *b, char **tab, int *n);
 int		checkdup(t_stack *stack);
+int		good_order(t_stack *a);
 
 #endif

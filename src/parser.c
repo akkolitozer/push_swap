@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 15:26:05 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/13 17:27:25 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/20 17:16:04 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int	parse_args(t_stack **a, t_stack **b, int ac, char **av)
 	{
 		append_stack(a, new_node(ft_atoi(av[i], &error), indexer[i]));
 		if (error)
-			return (ft_printf("Error\n"));
+			return (error_exit(*a, *b, NULL, indexer));
 	}
 	if (checkdup(*a))
-		return (ft_printf("Error\n"));
+		return (error_exit(*a, *b, NULL, indexer));
 	if (ac == 2 || ac == 5 || ac == 3)
 		ret += hardc(a, b, ac);
 	free(indexer);
@@ -80,10 +80,10 @@ int	parse_single_string(t_stack **a, t_stack **b, char *str)
 	{
 		append_stack(a, new_node(ft_atoi(numbers[i], &error), indexer[i]));
 		if (error)
-			return (ft_printf("Error\n"));
+			return (error_exit(*a, *b, numbers, indexer));
 	}
 	if (checkdup(*a))
-		return (ft_printf("Error\n"));
+		return (error_exit(*a, *b, numbers, indexer));
 	if (countwords(str) == 2 || countwords(str) == 3 || countwords(str) == 5)
 		ret += hardc(a, b, countwords(str));
 	free(indexer);

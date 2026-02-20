@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 15:26:14 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/13 17:25:11 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/17 19:46:47 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,26 @@ void	print_stack(t_stack *a)
 
 int	main2(t_stack *a, t_stack *b, int ac, char **av)
 {
+	int	h;
+
+	h = 0;
 	if (ac < 2)
 		return (ft_printf("Error\n Need arguments.\n"));
 	else if (ac == 2)
 	{
-		if (parse_single_string(&a, &b, av[1]))
-		{
-			free_stacks(a, b);
+		h = parse_single_string(&a, &b, av[1]);
+		if (h > 0)
 			return (0);
-		}
 	}
 	else
 	{
-		if (parse_args(&a, &b, ac - 1, av + 1))
-		{
-			free_stacks(a, b);
+		h = parse_args(&a, &b, ac - 1, av + 1);
+		if (h > 0)
 			return (0);
-		}
 	}
-	radix(&a, &b);
-	free_stack(a);
-	free_stack(b);
+	if (!h)
+		radix(&a, &b);
+	free_stacks(a, b);
 	return (0);
 }
 

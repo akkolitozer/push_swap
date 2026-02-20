@@ -6,7 +6,7 @@
 /*   By: hulescur <hulescur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 13:57:03 by hulescur          #+#    #+#             */
-/*   Updated: 2026/02/17 15:02:43 by hulescur         ###   ########.fr       */
+/*   Updated: 2026/02/20 17:16:45 by hulescur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	get_pos_lower(t_stack **stack)
 	return (pos);
 }
 
-void	lower_on_top(t_stack **stack, int pos)
+void	lower_on_top(t_stack **stack, int pos, int r)
 {
 	if (pos > 2)
 	{
-		while (pos++ < 5)
+		while (pos++ < 5 - r)
 			rrab(stack, 1);
 	}
 	else if (pos < 3)
@@ -79,9 +79,9 @@ void	sort_three(t_stack **stack)
 
 void	sort_five(t_stack **a, t_stack **b)
 {
-	lower_on_top(a, get_pos_lower(a));
+	lower_on_top(a, get_pos_lower(a), 0);
 	pab(a, b, 0);
-	lower_on_top(a, get_pos_lower(a));
+	lower_on_top(a, get_pos_lower(a), 1);
 	pab(a, b, 0);
 	sort_three(a);
 	pab(b, a, 1);
@@ -93,6 +93,11 @@ int	hardc(t_stack **a, t_stack **b, int i)
 	int	first;
 	int	second;
 
+	if (good_order(*a))
+	{
+		free_stacks(*a, *b);
+		return (1);
+	}
 	if (i == 2)
 	{
 		first = (*a)->index;
@@ -104,5 +109,6 @@ int	hardc(t_stack **a, t_stack **b, int i)
 		sort_three(a);
 	else if (i == 5)
 		sort_five(a, b);
+	free_stacks(*a, *b);
 	return (1);
 }
